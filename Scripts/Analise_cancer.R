@@ -42,10 +42,10 @@ dados_selecionados$IDADE <- as.integer(sub("^4", "", dados_selecionados$IDADE))
 dados_selecionados$IDADE[dados_selecionados$IDADE >= 500] <- dados_selecionados$IDADE[dados_selecionados$IDADE >= 500] - 400
 
 # Cria uma variável ANO_OBITO extraindo o ano da data de óbito
-dados_selecionado <-  dados_selecionados %>%
+dados_selecionados <-  dados_selecionados %>%
   mutate(
     ANO_OBITO = format(as.Date(DTOBITO, format = "%Y-%m-%d"), "%Y")
   )
 
-
-
+# Gravar selecionados em parquet
+write_parquet(dados_selecionados, 'dados_cancer.parquet')
